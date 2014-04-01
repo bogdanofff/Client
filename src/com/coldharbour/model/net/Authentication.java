@@ -6,6 +6,7 @@ public class Authentication {
 	private String resultCode;
 
 	public Authentication(User user, Connection connect) {
+		connect.send("authStart");
 		connect.send(user.login());
 		connect.send(user.password());
 		resultCode = connect.read();

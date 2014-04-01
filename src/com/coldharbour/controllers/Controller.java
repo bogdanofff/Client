@@ -8,6 +8,7 @@ import com.coldharbour.view.*;
 public class Controller implements IController {
 	private AuthUI auth;
 	private IChatModel model;
+	private RegUI reg;
 	
 	public Controller(UI ui) {
 		model = new ChatModel(this);
@@ -17,7 +18,8 @@ public class Controller implements IController {
 
 	@Override
 	public void login() {
-		model.connect(auth.getUSer());
+		model.auth(auth.getUSer());
+//		model.connect(auth.getUSer());
 	}
 
 	@Override
@@ -28,12 +30,6 @@ public class Controller implements IController {
 	@Override
 	public void disconnect() {
 		model.disconnect();
-	}
-
-	@Override
-	public void register() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -48,5 +44,18 @@ public class Controller implements IController {
 	
 	public void showError(String message) {
 		auth.showError(message);
+	}
+
+	@Override
+	public void openRegUI() {
+		// TODO Auto-generated method stub
+		RegUI reg = new RegUI(this);
+		reg.initialize();
+	}
+
+	@Override
+	public void register(String login, String pwd, String rPwd) {
+		// TODO Auto-generated method stub
+		model.register(login, pwd, rPwd);
 	}
 }

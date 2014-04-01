@@ -92,7 +92,7 @@ public class AuthUI {
 		registerLink.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				controller.register();
+				controller.openRegUI();
 			}
 			
 			@Override

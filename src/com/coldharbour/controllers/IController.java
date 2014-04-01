@@ -10,9 +10,11 @@ public interface IController {
 	
 	public void disconnect();
 	
-	public void register();
+	public void register(String login, String pwd, String rPwd);
 	
 	public void forgotten();
+	
+	public void openRegUI();
 
 
 }
