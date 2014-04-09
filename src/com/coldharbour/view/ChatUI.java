@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Button;
@@ -92,6 +94,18 @@ public class ChatUI implements Observer {
 					}
 				});
 				
+				
+//				shell.addDisposeListener(new DisposeListener() {
+//					
+//					@Override
+//					public void widgetDisposed(DisposeEvent arg0) {
+//						// TODO Auto-generated method stub
+////						controller.disconnect();
+////						System.exit(0);
+//						System.out.println("Dispose");
+//					}
+//				});
+				
 				shell.setLayout(null);  
 				shell.open();
 				
@@ -100,7 +114,7 @@ public class ChatUI implements Observer {
 						display.sleep();
 					}
 				}
-				display.dispose();
+//				display.dispose();
 			}
 		});
 		

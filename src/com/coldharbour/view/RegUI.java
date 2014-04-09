@@ -76,6 +76,9 @@ public class RegUI {
 			public void widgetSelected(SelectionEvent arg0) {
 				// TODO Auto-generated method stub
 				controller.register(loginText.getText(), pwdText.getText(), repeatPwdText.getText());
+				loginText.setText("");
+				pwdText.setText("");
+				repeatPwdText.setText("");
 			}
 			
 			@Override

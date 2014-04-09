@@ -3,9 +3,7 @@ package com.coldharbour.model;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.UnknownHostException;
-
 import org.eclipse.swt.widgets.Display;
-
 import com.coldharbour.controllers.Controller;
 import com.coldharbour.model.net.Authentication;
 import com.coldharbour.model.net.Connection;
@@ -33,28 +31,10 @@ public class ChatModel implements IChatModel {
 		} catch (ConnectException e) {
 			controller.showError("Сервер не найден");
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		if (new Authentication(user, connect).authenticate()) {
-//			this.user = user;
-//			new Thread(new Runnable() {
-//				@Override
-//				public void run() {
-//					chat = new ChatUI(controller);
-//					im = new IncomingMessages(connect, chat);
-//					new Thread(im).start();
-//					chat.initialize();
-//				}
-//			}).start();
-			// controller.closeAuthUI();
-//		} else {
-//			controller.showError("Не верный логин или пароль");
-//			connect.close();
-//		}
 	}
 
 	@Override
@@ -66,17 +46,18 @@ public class ChatModel implements IChatModel {
 	public void disconnect() {
 		// TODO переписать дисконект, работает неправильно
 		connect.send("0xfff");
+		im.stop();
 	}
 
 	@Override
 	public void register(String login, String pwd, String rPwd) {
-		// TODO Auto-generated method stub
-		Register register = new Register();
-		if (register.validate(login, pwd, rPwd)) {
+		Register r = new Register();
+		if (r.validate(login, pwd, rPwd)) {
 			if (connect == null) {
+				System.out.println("new connect");
 				connect();
 			}
-			if (register.reg(connect)) {
+			if (r.reg(connect)) {
 				System.out.println("Регистрация прошла успешно!");
 			}
 		}
@@ -86,6 +67,7 @@ public class ChatModel implements IChatModel {
 	public void auth(User user) {
 		
 		if (connect == null) {
+			System.out.println("new connect");
 			connect();
 		}
 
@@ -102,7 +84,7 @@ public class ChatModel implements IChatModel {
 			}).start();
 		} else {
 			controller.showError("Не верный логин или пароль");
-			connect.close();
+//			connect.close();
 		}
 	}
 }

@@ -13,9 +13,9 @@ public class Authentication {
 	}
 
 	public boolean authenticate() {
-//		if (resultCode.equals("OK200"))
-//			return true;
-//		else
+		if (resultCode.equals("OK200"))
 			return true;
+		else
+			return false;
 	}
 }
